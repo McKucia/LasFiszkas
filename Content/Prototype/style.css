@@ -5,9 +5,9 @@
 }
 
 body {
-    font-family: 'Oswald', sans-serif  !important;
-    background-color: var(--white)  !important;
-    height: 100vh  !important;
+    font-family: 'Oswald', sans-serif !important;
+    background-color: var(--white) !important;
+    height: 100vh !important;
 }
 
 :root {
@@ -16,9 +16,9 @@ body {
     --blue: #007291;
     --white: #f9f2db;
     --pink: #f2624f;
-  }
+}
 
-header{
+header {
     display: flex;
 }
 
@@ -28,36 +28,36 @@ header{
     margin: auto;
 }
 
-#logo h2 {
-    font-size: 90px;
-}
+    #logo h2 {
+        font-size: 90px;
+    }
 
-#logo h2:nth-child(1) {
-    width: fit-content;
-    color: var(--red);
-}
+        #logo h2:nth-child(1) {
+            width: fit-content;
+            color: var(--red);
+        }
 
-#logo h2:nth-child(2) {
-    color: var(--yellow);
-    animation: animate infinite 5s linear;
-    position: absolute;
-    top: 0;
-}
+        #logo h2:nth-child(2) {
+            color: var(--yellow);
+            animation: animate infinite 5s linear;
+            position: absolute;
+            top: 0;
+        }
 
-@keyframes animate{
-    0%, 100%{
+@keyframes animate {
+    0%, 100% {
         clip-path: polygon(0% 44%, 17% 31%, 39% 23%, 66% 23%, 85% 26%, 100% 30%, 100% 55%, 84% 48%, 66% 44%, 41% 46%, 22% 54%, 0% 69%);
     }
 
-    25%{
+    25% {
         clip-path: polygon(0 26%, 20% 28%, 39% 31%, 64% 34%, 82% 39%, 100% 46%, 100% 69%, 81% 63%, 64% 60%, 40% 56%, 22% 54%, 0 53%);
     }
 
-    50%{
+    50% {
         clip-path: polygon(0 41%, 20% 44%, 43% 50%, 64% 58%, 81% 58%, 100% 57%, 100% 85%, 83% 86%, 64% 84%, 42% 77%, 21% 69%, 0 68%);
-    }   
+    }
 
-    75%{
+    75% {
         clip-path: polygon(0 55%, 20% 60%, 43% 62%, 64% 53%, 80% 43%, 100% 32%, 100% 63%, 87% 72%, 66% 81%, 43% 90%, 19% 88%, 0 84%);
     }
 }
@@ -73,32 +73,32 @@ header{
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
-    box-shadow:  0 0 10px black;
+    box-shadow: 0 0 10px black;
 }
 
-.sidenav a {
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: block;
-    text-decoration: none;
-    color: var(--white);
-    font-size: 25px;
-    white-space: nowrap;
-}
+    .sidenav a {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: block;
+        text-decoration: none;
+        color: var(--white);
+        font-size: 25px;
+        white-space: nowrap;
+    }
 
-.sidenav a:hover {
-    color: wheat;
-    text-decoration:solid
-}
+        .sidenav a:hover {
+            color: wheat;
+            text-decoration: solid
+        }
 
-.sidenav .closebtn {
-    position: absolute;
-    top: -25px;
-    right: 25px;
-    font-size: 65px;
-    margin-left: 50px;
-}
+    .sidenav .closebtn {
+        position: absolute;
+        top: -25px;
+        right: 25px;
+        font-size: 65px;
+        margin-left: 50px;
+    }
 
 @media screen and (max-width: 500px) {
     #logo h2 {
@@ -110,7 +110,7 @@ header{
     }
 }
 
-.open{
+.open {
     line-height: 500%;
     margin-left: 30px;
     font-size: 30px;
@@ -128,13 +128,12 @@ header{
 }
 
 .fish-inner {
-    text-align:center;
+    text-align: center;
     border-radius: 5%;
     position: relative;
     width: 100%;
     height: 100%;
     word-wrap: break-word;
-
     transition: transform 0.6s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
@@ -165,6 +164,78 @@ header{
 .transform-active {
     transform: rotateY(180deg);
 }
+
+.profile-photo {
+    border: solid 2px var(--white);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 30%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+main {
+    margin-top: 60px;
+}
+
+    main article {
+        display: flex;
+        flex-direction: row;
+    }
+
+    main img {
+        position: relative;
+        top: 20px;
+        margin: auto;
+        visibility: hidden;
+        transition: transform 2s, opacity 2s;
+    }
+
+.thumb-transform {
+    visibility: initial;
+    transform: translateY(-70px);
+    opacity: 0;
+}
+
+.guess textarea {
+    text-align: center;
+    display: block;
+    margin: 40px auto 10px;
+    background-color: transparent;
+    border-style: none;
+    font-size: 25px;
+    outline: none;
+    resize: none;
+    opacity: 0.6;
+    background-image: repeating-linear-gradient(transparent, transparent 40px, grey 40px, grey 41px);
+}
+
+.guess button {
+    padding: 5px;
+    display: block;
+    margin: auto;
+    font-size: 15px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: var(--white);
+    background-color: var(--red);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px #999;
+}
+
+    .guess button:hover {
+        background-color: #c7350a
+    }
+
+    .guess button:active {
+        background-color: #c7350a;
+        box-shadow: 0 3px #666;
+        transform: translateY(3px);
+    }
 
 .profile-photo {
     border: solid 2px var(--white);

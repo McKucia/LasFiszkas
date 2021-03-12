@@ -134,6 +134,7 @@
     <Content Include="Content\Prototype\img\mc.jpg" />
     <Content Include="Content\Prototype\img\thumb-up.png" />
     <Content Include="Content\Prototype\index.html" />
+    <Content Include="Content\Prototype\scripts\mainPage.js" />
     <Content Include="Content\Prototype\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -161,11 +162,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MainPageLayout.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Oswald', sans-serif  !important;
+    background-color: var(--white)  !important;
+    height: 100vh  !important;
+}
+
+:root {
+    --red: #d8460b;
+    --yellow: #f9c13e;
+    --blue: #007291;
+    --white: #f9f2db;
+    --pink: #f2624f;
+  }
+
+header{
+    display: flex;
+}
+
+#logo {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+
+#logo h2 {
+    font-size: 90px;
+}
+
+#logo h2:nth-child(1) {
+    width: fit-content;
+    color: var(--red);
+}
+
+#logo h2:nth-child(2) {
+    color: var(--yellow);
+    animation: animate infinite 5s linear;
+    position: absolute;
+    top: 0;
+}
+
+@keyframes animate{
+    0%, 100%{
+        clip-path: polygon(0% 44%, 17% 31%, 39% 23%, 66% 23%, 85% 26%, 100% 30%, 100% 55%, 84% 48%, 66% 44%, 41% 46%, 22% 54%, 0% 69%);
+    }
+
+    25%{
+        clip-path: polygon(0 26%, 20% 28%, 39% 31%, 64% 34%, 82% 39%, 100% 46%, 100% 69%, 81% 63%, 64% 60%, 40% 56%, 22% 54%, 0 53%);
+    }
+
+    50%{
+        clip-path: polygon(0 41%, 20% 44%, 43% 50%, 64% 58%, 81% 58%, 100% 57%, 100% 85%, 83% 86%, 64% 84%, 42% 77%, 21% 69%, 0 68%);
+    }   
+
+    75%{
+        clip-path: polygon(0 55%, 20% 60%, 43% 62%, 64% 53%, 80% 43%, 100% 32%, 100% 63%, 87% 72%, 66% 81%, 43% 90%, 19% 88%, 0 84%);
+    }
+}
+
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    z-index: 1;
+    background-color: var(--pink);
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    box-shadow:  0 0 10px black;
+}
+
+.sidenav a {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 25px;
+    white-space: nowrap;
+}
+
+.sidenav a:hover {
+    color: wheat;
+    text-decoration:solid
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: -25px;
+    right: 25px;
+    font-size: 65px;
+    margin-left: 50px;
+}
+
+@media screen and (max-width: 500px) {
+    #logo h2 {
+        font-size: 70px;
+    }
+
+    .open {
+        margin-left: 10px !important;
+    }
+}
+
+.open{
+    line-height: 500%;
+    margin-left: 30px;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--red);
+}
+
+.fish {
+    margin: auto;
+    cursor: pointer;
+    background-color: transparent;
+    width: 250px;
+    height: 150px;
+    perspective: 1000px;
+}
+
+.fish-inner {
+    text-align:center;
+    border-radius: 5%;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    word-wrap: break-word;
+
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
+}
+
+.fish-front, .fish-back {
+    font-size: 25px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.fish-front {
+    border-radius: 5%;
+    background-color: var(--yellow);
+    color: var(--red);
+}
+
+.fish-back {
+    border-radius: 5%;
+    background-color: var(--red);
+    color: var(--yellow);
+    transform: rotateY(180deg);
+}
+
+.transform-active {
+    transform: rotateY(180deg);
+} 

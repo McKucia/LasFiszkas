@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las Fiszkas</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+        .profile-photo {
+            border: solid 2px var(--white);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; 
+            margin-left: 30%;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        main {
+            margin-top: 60px;
+        }
+
+        main article {
+            display: flex;
+            flex-direction: row;
+        }
+
+        main img {
+            position: relative;
+            top: 20px;  
+            margin: auto;
+            visibility: hidden;
+            transition: transform 2s, opacity 2s;
+        }
+
+        .thumb-transform {
+            visibility: initial;
+            transform: translateY(-70px);
+            opacity: 0;
+        }
+
+        .guess textarea {
+            text-align: center;
+            display: block;
+            margin: 40px auto 10px;
+            background-color: transparent;
+            border-style: none;
+            font-size: 25px;
+            outline: none;
+            resize: none;
+            opacity: 0.6;
+            background-image: repeating-linear-gradient(transparent, transparent 40px, grey 40px, grey 41px);
+        }
+
+        .guess button {
+            padding: 5px;
+            display: block;
+            margin: auto;
+            font-size: 15px;
+            padding: 10px 20px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: var(--white);
+            background-color: var(--red);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 6px #999;
+        }
+
+        .guess button:hover {background-color: #c7350a}
+
+        .guess button:active {
+            background-color: #c7350a;
+            box-shadow: 0 3px #666;
+            transform: translateY(3px);
+        }
+        
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <span onclick="openNav()" class="open">&#9776;</span>
+        <div id="logo">
+            <h2>LasFiszkas</h2>
+            <h2>LasFiszkas</h2>
+        </div>
+        <div style="width: 60px;"></div>
+    </header>
+
+    <hr color="#A0A0A0">
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <img src="img/mc.jpg" alt="Profile photo" class="profile-photo">
+        <a href="#">Twoje konto</a>
+        <a href="#">Twoje zestawy</a>
+        <a href="#">Kontakt</a>
+        <a href="#">Wyloguj</a>
+    </div>
+
+
+    <main>
+        <article>
+            <img class="thumb" src="img/thumb-up.png" width="60px" height="60px">
+
+            <div class="fish" onclick="ani()">
+                <div class="fish-inner">
+                    <div class="fish-front" maxlength="34">
+                        Jugo de naranja
+                    </div>
+                    <div class="fish-back" maxlength="34">Sok pomarańczowy</div>
+                </div>
+            </div>
+
+            <img class="thumb" src="img/thumb-up.png" width="60px" height="60px">
+
+        </article>
+
+        <div class="form-group guess">
+            <textarea name="guess" cols="30" rows="3" maxlength="31"></textarea>
+            <button type="button" onclick="check()">Sprawdź!</button>
+            <button type="button" onclick="next()" style="background-color: var(--yellow); color: var(--red); display: none;">Dalej</button>
+        </div>
+    </main>
+
+    <script>
+        function openNav() {
+            var screenWidth = window.innerWidth;
+            if (screenWidth < 500) {
+                document.getElementById("mySidenav").style.width = "200px";
+            }
+            else {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+        function ani() {
+            var fish = document.querySelector('.fish-inner');
+            fish.classList.toggle('transform-active');
+
+            var buttons = document.querySelectorAll('.guess button')
+            
+            buttons[0].style.display = 'none';
+            buttons[1].style.display = 'block';
+        }
+
+        function thumbAni() {
+            var thumbs = document.querySelectorAll('.thumb');
+            
+            for(var i = 0; i < thumbs.length; i++){
+                thumbs[i].classList.toggle('thumb-transform');
+            }
+        }
+
+        function check() {
+            var guess = document.querySelector('.guess textarea');
+            var buttons = document.querySelectorAll('.guess button')
+            var fishBack = document.querySelector('.fish-back');
+            var fish = document.querySelector('.fish-inner');
+
+            if(guess.value.toLowerCase() == fishBack.textContent.toLowerCase()) {
+                thumbAni();
+                ani();
+                buttons[0].style.display = 'none';
+                buttons[1].style.display = 'block';
+            }
+            else {
+                var wrongAni = [ 
+                    { transform: 'rotate(5deg)', offset: 0.25}, 
+                    { transform: 'rotate(-5deg)', offset: 0.50 }, 
+                    { transform: 'rotate(5deg)', offset: 0.75 } ];
+
+                fish.animate(wrongAni, { duration: 300 });
+            }
+        }
+
+        function next() {
+            var buttons = document.querySelectorAll('.guess button');
+            var guess = document.querySelector('.guess textarea');
+
+            buttons[0].style.display = 'block';
+            buttons[1].style.display = 'none';
+            guess.value = "";
+
+            var newFish = document.createElement("div");
+            newFish.innerHTML = 
+                "<div class='fish' onclick='ani()'>"+
+                    "<div class='fish-inner'>"+
+                        "<div class='fish-front' maxlength='34'>Una cerveza</div>"+
+                        "<div class='fish-back' maxlength='34'>Piwerko</div>"+
+                    "</div>"+
+                "</div>"
+            ;
+
+            var article = document.querySelector('main article');
+            var fish = document.querySelector('.fish');
+            article.replaceChild(newFish, fish);
+        }
+
+    </script>
+</body>
+
+</html>

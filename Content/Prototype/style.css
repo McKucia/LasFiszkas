@@ -192,6 +192,15 @@ main {
         transition: transform 2s, opacity 2s;
     }
 
+.newFish {
+    margin: auto;
+}
+    
+    .newFish tr td {
+        padding: 4px;
+        
+    }
+
 .thumb-transform {
     visibility: initial;
     transform: translateY(-70px);
@@ -211,7 +220,7 @@ main {
     background-image: repeating-linear-gradient(transparent, transparent 40px, grey 40px, grey 41px);
 }
 
-.guess button {
+.guessButton {
     padding: 5px;
     display: block;
     margin: auto;
@@ -227,11 +236,11 @@ main {
     box-shadow: 0 6px #999;
 }
 
-    .guess button:hover {
+    .guessButton:hover {
         background-color: #c7350a
     }
 
-    .guess button:active {
+    .guessButton:active {
         background-color: #c7350a;
         box-shadow: 0 3px #666;
         transform: translateY(3px);

@@ -9,7 +9,10 @@ namespace LasFiszkas.Models
     public class Fish
     {
         [Key]
+        [ScaffoldColumn(false)]
         public int FishId { get; set; }
+
+        [ScaffoldColumn(false)]
         public int SetId { get; set; }
 
         [StringLength(35)]

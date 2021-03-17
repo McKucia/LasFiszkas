@@ -10,9 +10,9 @@ namespace LasFiszkas.Controllers
 {
     public class HomeController : Controller
     {
-        private FishContext db = new FishContext();
+        //private FishContext db = new FishContext();
 
-        public ActionResult Index()
+        public ActionResult Main()
         {
             return View();
         }
@@ -25,30 +25,38 @@ namespace LasFiszkas.Controllers
         [HttpPost]
         public ActionResult NewSet(List<Fish> fishes)
         {
-            if (!ModelState.IsValid)
-                return View(fishes);
+            /*            if (!ModelState.IsValid)
+                            return View(fishes);
 
-            else
-            {
-                Set newSet = new Set { Name = "Test", Description = "Test to jest", IconFilename = "test.png" };
-                db.Sets.Add(newSet);
+                        else
+                        {
+                            Set newSet = new Set { Name = "Test", Description = "Test to jest", IconFilename = "test.png" };
+                            db.Sets.Add(newSet);
 
-                foreach (var f in fishes) {
-                    f.Set = newSet;
-                    db.Fishes.Add(f);
-                }
-                db.SaveChanges();
-                return View();
-            }
+                            foreach (var f in fishes) {
+                                f.Set = newSet;
+                                db.Fishes.Add(f);
+                            }
+                            db.SaveChanges();
+                            return View();
+                        }*/
+            return View();
         }
 
-        public ActionResult Index2()
+        public ActionResult Guess(string setName)
         {
-            Set newSet = new Set { Name = "Jedzenie", Description = "To co na stole masz", IconFilename = "1.png" };
-            db.Sets.Add(newSet);
-            db.SaveChanges();
+            FishContext db = new FishContext();
+            var foodSet = db.Sets.Where(s => s.Name == setName).FirstOrDefault();
+            if(foodSet == null)
+            {
+                Response.StatusCode = 404;
+                Response.TrySkipIisCustomErrors = true;
+                return View("my404Error");
+            }
+            var fishes = foodSet.Fishes.ToList();
 
-            return View();
+
+            return View(fishes);
         }
     }
 }

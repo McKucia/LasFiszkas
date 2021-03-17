@@ -1,6 +1,6 @@
-﻿
+﻿@model List<LasFiszkas.Models.Fish>
 @{
-    ViewBag.Title = "Index2";
+    ViewBag.Title = "Guess";
 }
 
 <main>
@@ -10,9 +10,9 @@
         <div class="fish" onclick="ani()">
             <div class="fish-inner">
                 <div class="fish-front" maxlength="34">
-                    Jugo de naranja
+                    @Model.First().EspContent
                 </div>
-                <div class="fish-back" maxlength="34">Sok pomarańczowy</div>
+                <div class="fish-back" maxlength="34">@Model.First().PlContent</div>
             </div>
         </div>
 

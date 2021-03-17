@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\FishContext.cs" />
+    <Compile Include="DAL\FishInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -173,8 +174,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MainPageLayout.cshtml" />
-    <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Home\Guess.cshtml" />
     <Content Include="Views\Home\NewSet.cshtml" />
+    <Content Include="Views\Home\Main.cshtml" />
+    <Content Include="Views\Shared\my404Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

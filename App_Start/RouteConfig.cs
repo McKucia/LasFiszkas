@@ -15,8 +15,8 @@ namespace LasFiszkas
 
             routes.MapRoute(
                 name: "Guess",
-                url: "Home/Guess/set-{setName}",
-                defaults: new { controller = "Home", action = "Guess"}
+                url: "Home/Guess/set-{setName}/{fishId}",
+                defaults: new { controller = "Home", action = "Guess", fishId = UrlParameter.Optional}
             );
 
             routes.MapRoute(

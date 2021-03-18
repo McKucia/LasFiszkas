@@ -10,7 +10,7 @@ namespace LasFiszkas.Controllers
 {
     public class HomeController : Controller
     {
-        //private FishContext db = new FishContext();
+        private FishContext db = new FishContext();
 
         public ActionResult Main()
         {
@@ -43,9 +43,9 @@ namespace LasFiszkas.Controllers
             return View();
         }
 
-        public ActionResult Guess(string setName)
+        public ActionResult Guess(string setName, int? fishId = null)
         {
-            FishContext db = new FishContext();
+            db = new FishContext();
             var foodSet = db.Sets.Where(s => s.Name == setName).FirstOrDefault();
             if(foodSet == null)
             {
@@ -53,10 +53,19 @@ namespace LasFiszkas.Controllers
                 Response.TrySkipIisCustomErrors = true;
                 return View("my404Error");
             }
-            var fishes = foodSet.Fishes.ToList();
 
-
-            return View(fishes);
+            Fish fish;
+            if (fishId.HasValue)
+            {
+                fishId++;
+                fish = foodSet.Fishes.ToList().Find(f => f.FishId == fishId);
+            }
+            else
+            {
+                fish = foodSet.Fishes.First();
+            }
+            
+            return View(fish);
         }
     }
 }

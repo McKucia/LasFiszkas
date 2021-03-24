@@ -1,0 +1,41 @@
+﻿@model string
+@{
+    ViewBag.Title = Model;
+}
+
+<main>
+    <article id="update">
+    </article>
+
+    <div class="form-group guess">
+        <textarea name="guess" cols="30" rows="3" maxlength="31" style="display: none;"></textarea>
+        <button class="button guessButton" type="button" onclick="check()" style="display: none;">Sprawdź!</button>
+        @Ajax.ActionLink("Zaczynamy!", "Next", "Fish", new { setName = Model }, new AjaxOptions()
+           {
+               UpdateTargetId = "update",
+               OnSuccess = "ProcessAndUpdate",
+               LoadingElementId = "loading",
+           }, new { @class = "button nextButton", @style = "color: var(--red); background-color: var(--yellow)" })
+    </div>
+    <div id="loading" class="loader" style="display: none; margin: auto;"></div>
+</main>
+
+<script id="fishTmpl" type="text/template">
+    <img class="thumb" src="@Url.Content("~/Content/Prototype/img/thumb-up.png")" width="60" height="60">
+    <div class="fish" onclick="ani()">
+        <div class="fish-inner">
+            <div class="fish-front" maxlength="34">
+                {{EspContent}}
+            </div>
+            <div class="fish-back" maxlength="34">{{PlContent}}</div>
+        </div>
+    </div>
+    <img class="thumb" src="@Url.Content("~/Content/Prototype/img/thumb-up.png")" width="60" height="60">
+</script>
+
+@section ScriptsBottom{
+    <script type="text/javascript" src="@Url.Content("~/Content/Prototype/scripts/mainPage.js")"></script>
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery-unobtrusive")
+    @System.Web.Optimization.Scripts.Render("~/bundles/mustache")
+}

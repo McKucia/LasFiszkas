@@ -1,0 +1,28 @@
+﻿@model List<LasFiszkas.Models.Set>
+@{
+    ViewBag.Title = "Twoje Zestawy";
+}
+
+
+    <div class="col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 sets">
+        @foreach (var set in Model)
+        {
+            <div class="set">
+                <figure>
+                    <img src="@Url.Content("~/Content/Prototype/img/mc.jpg")" alt="set">
+                </figure>
+                <figcaption>
+                    <h4>@set.Name</h4>
+                    <div class="buttons">
+                        <a href='@Url.Action("Guess", "Fish", new RouteValueDictionary(new { setName = set.Name }) )'>Graj</a>
+                        <a href="#">Edytuj</a>
+                        <a href="#">Usuń</a>
+                    </div>
+                </figcaption>
+            </div>
+        }
+
+    </div>
+
+
+

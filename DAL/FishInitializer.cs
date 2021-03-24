@@ -23,17 +23,17 @@ namespace LasFiszkas.DAL
 
             var fishes = new List<Fish>
             {
-                new Fish() { SetId = 1, PlContent = "El pan", EspContent = "Chleb" },
-                new Fish() { SetId = 1, PlContent = "La carne", EspContent = "Mięso" },
-                new Fish() { SetId = 1, PlContent = "El pollo", EspContent = "Kurczak" },
-                new Fish() { SetId = 1, PlContent = "La zanahoria", EspContent = "Marchewka" },
-
-                new Fish() { SetId = 2, PlContent = "La bateria", EspContent = "Perkusja" },
-                new Fish() { SetId = 2, PlContent = "El teclado", EspContent = "Keyboard" },
-
-                new Fish() { SetId = 3, PlContent = "levantarse", EspContent = "budzić się" },
-                new Fish() { SetId = 3, PlContent = "ducharse", EspContent = "brać prysznic" },
-                new Fish() { SetId = 3, PlContent = "vestirse", EspContent = "ubierać się" },
+                new Fish() { FishInnerId = 1, SetId = 1, EspContent = "El pan",       PlContent = "Chleb" },
+                new Fish() { FishInnerId = 2, SetId = 1, EspContent = "La carne",     PlContent = "Mięso" },
+                new Fish() { FishInnerId = 3, SetId = 1, EspContent = "El pollo",     PlContent = "Kurczak" },
+                new Fish() { FishInnerId = 4, SetId = 1, EspContent = "La zanahoria",  PlContent = "Marchewka" },
+                                                                                      
+                new Fish() { FishInnerId = 1, SetId = 2, EspContent = "La bateria",   PlContent = "Perkusja" },
+                new Fish() { FishInnerId = 2, SetId = 2, EspContent = "El teclado",   PlContent = "Keyboard" },
+                                                                                      
+                new Fish() { FishInnerId = 1, SetId = 3, EspContent = "levantarse",   PlContent = "budzić się" },
+                new Fish() { FishInnerId = 2, SetId = 3, EspContent = "ducharse",     PlContent = "brać prysznic" },
+                new Fish() { FishInnerId = 3, SetId = 3, EspContent = "vestirse",     PlContent = "ubierać się" },
             };
 
             fishes.ForEach(f => context.Fishes.Add(f));

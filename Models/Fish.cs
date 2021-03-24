@@ -13,6 +13,9 @@ namespace LasFiszkas.Models
         public int FishId { get; set; }
 
         [ScaffoldColumn(false)]
+        public int FishInnerId { get; set; }
+
+        [ScaffoldColumn(false)]
         public int SetId { get; set; }
 
         [StringLength(35)]
@@ -24,5 +27,11 @@ namespace LasFiszkas.Models
         public string PlContent { get; set; }
 
         public virtual Set Set { get; set; }
+    }
+
+    public class FishVM
+    {
+        public string EspContent { get; set; }
+        public string PlContent { get; set; }
     }
 }

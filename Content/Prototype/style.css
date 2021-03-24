@@ -195,10 +195,9 @@ main {
 .newFish {
     margin: auto;
 }
-    
+
     .newFish tr td {
         padding: 4px;
-        
     }
 
 .thumb-transform {
@@ -220,8 +219,9 @@ main {
     background-image: repeating-linear-gradient(transparent, transparent 40px, grey 40px, grey 41px);
 }
 
-.guessButton {
-    padding: 5px;
+.button {
+    text-decoration: none;
+    width: 150px;
     display: block;
     margin: auto;
     font-size: 15px;
@@ -229,11 +229,14 @@ main {
     text-align: center;
     cursor: pointer;
     outline: none;
-    color: var(--white);
-    background-color: var(--red);
     border: none;
     border-radius: 15px;
     box-shadow: 0 6px #999;
+}
+
+.guessButton {
+    color: var(--white);
+    background-color: var(--red);
 }
 
     .guessButton:hover {
@@ -242,6 +245,21 @@ main {
 
     .guessButton:active {
         background-color: #c7350a;
+        box-shadow: 0 3px #666;
+        transform: translateY(3px);
+    }
+
+.nextButton {
+    color: var(--red);
+    background-color: var(--yellow);
+}
+
+    .nextButton:hover {
+        background-color: #d8b02d
+    }
+
+    .nextButton:active {
+        background-color: #d8b02d;
         box-shadow: 0 3px #666;
         transform: translateY(3px);
     }
@@ -292,28 +310,119 @@ main {
     background-image: repeating-linear-gradient(transparent, transparent 40px, grey 40px, grey 41px);
 }
 
-.guess button {
-    padding: 5px;
-    display: block;
-    margin: auto;
-    font-size: 15px;
-    padding: 10px 20px;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    color: var(--white);
-    background-color: var(--red);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 6px #999;
+.loader,
+.loader:before,
+.loader:after {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation: load7 1.8s infinite ease-in-out;
+    animation: load7 1.8s infinite ease-in-out;
 }
 
-    .guess button:hover {
-        background-color: #c7350a
+.loader {
+    color: var(--red);
+    font-size: 10px;
+    margin: 80px auto;
+    position: relative;
+    text-indent: -9999em;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+    .loader:before,
+    .loader:after {
+        content: '';
+        position: absolute;
+        top: 0;
     }
 
-    .guess button:active {
-        background-color: #c7350a;
-        box-shadow: 0 3px #666;
-        transform: translateY(3px);
+    .loader:before {
+        left: -3.5em;
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+    }
+
+    .loader:after {
+        left: 3.5em;
+    }
+
+@-webkit-keyframes load7 {
+    0%, 80%, 100% {
+        box-shadow: 0 2.5em 0 -1.3em;
+    }
+
+    40% {
+        box-shadow: 0 2.5em 0 0;
+    }
+}
+
+@keyframes load7 {
+    0%, 80%, 100% {
+        box-shadow: 0 2.5em 0 -1.3em;
+    }
+
+    40% {
+        box-shadow: 0 2.5em 0 0;
+    }
+}
+
+
+.sets {
+    margin-top: 70px;
+    margin: auto;
+}
+
+.set {
+    background-color: wheat;
+    padding: 8px;
+    border: 1px solid grey;
+    border-radius: 6%;
+    display: inline-block;
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
+    width: 49%;
+}
+
+    .set h4 {
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .set .buttons {
+        text-align: center;
+    }
+
+    .set a {
+        text-decoration: none;
+        color: inherit;
+        padding-right: 5px;
+    }
+
+        .set a:hover {
+            color: var(--pink);
+        }
+
+    .set figure {
+        position: relative;
+        margin-bottom: 7px;
+    }
+
+        .set figure::after {
+            content: "";
+            display: block;
+            padding-bottom: 90%;
+        }
+
+    .set img {
+        border: 1px solid grey;
+        border-radius: 6%;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }

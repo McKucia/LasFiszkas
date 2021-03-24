@@ -1,10 +1,10 @@
-﻿@{ 
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 
-<html>
+<html lang="pl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Las Fiszkas</title>
@@ -33,7 +33,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <img src="@Url.Content("~/Content/Prototype/img/mc.jpg")" alt="Profile photo" class="profile-photo">
         <a href="#">Twoje konto</a>
-        <a href="#">Twoje zestawy</a>
+        <a href='@Url.Action("AllSets", "Sets")'>Twoje zestawy</a>
         <a href="#">Kontakt</a>
         <a href="#">Wyloguj</a>
     </div>

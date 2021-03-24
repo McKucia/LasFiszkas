@@ -2,10 +2,11 @@ function ani() {
     var fish = document.querySelector('.fish-inner');
     fish.classList.toggle('transform-active');
 
-    var buttons = document.querySelectorAll('.guess button')
+    var button = document.querySelector('.guess button');
+    var nextBtn = document.querySelector('.guess a');
 
-    buttons[0].style.display = 'none';
-    buttons[1].style.display = 'block';
+    button.style.display = 'none';
+    nextBtn.style.display = 'block';
 }
 
 function thumbAni() {
@@ -18,15 +19,12 @@ function thumbAni() {
 
 function check() {
     var guess = document.querySelector('.guess textarea');
-    var buttons = document.querySelectorAll('.guess button')
     var fishBack = document.querySelector('.fish-back');
     var fish = document.querySelector('.fish-inner');
 
     if (guess.value.toLowerCase() == fishBack.textContent.toLowerCase()) {
         thumbAni();
         ani();
-        buttons[0].style.display = 'none';
-        buttons[1].style.display = 'block';
     }
     else {
         var wrongAni = [
@@ -38,25 +36,20 @@ function check() {
     }
 }
 
-function next() {
-    var buttons = document.querySelectorAll('.guess button');
+function ProcessAndUpdate(result) {
     var guess = document.querySelector('.guess textarea');
+    var button = document.querySelector('.guess button');
+    var nextBtn = document.querySelector('.guess a');
 
-    buttons[0].style.display = 'block';
-    buttons[1].style.display = 'none';
-    guess.value = "";
+    guess.style.display = 'block';
+    button.style.display = 'block';
+    nextBtn.style.display = 'none';
 
-    var newFish = document.createElement("div");
-    newFish.innerHTML =
-        "<div class='fish' onclick='ani()'>" +
-        "<div class='fish-inner'>" +
-        "<div class='fish-front' maxlength='34'>Una cerveza</div>" +
-        "<div class='fish-back' maxlength='34'>Piwerko</div>" +
-        "</div>" +
-        "</div>"
-        ;
+    nextBtn.innerHTML = 'Dalej';
+    nextBtn.style.background = 'var(--yellow)';
+    nextBtn.style.color = 'var(--red)';
 
-    var article = document.querySelector('main article');
-    var fish = document.querySelector('.fish');
-    article.replaceChild(newFish, fish);
+    var template = $('#fishTmpl').html();
+    var html = Mustache.to_html(template, result);
+    $('#update').html(html);
 }

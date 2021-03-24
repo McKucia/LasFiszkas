@@ -14,9 +14,21 @@ namespace LasFiszkas
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Next",
+                url: "Fish/Next",
+                defaults: new { controller = "Fish", action = "Next" }
+            );
+
+            routes.MapRoute(
                 name: "Guess",
-                url: "Home/Guess/set-{setName}/{fishId}",
-                defaults: new { controller = "Home", action = "Guess", fishId = UrlParameter.Optional}
+                url: "Fish/Guess/set-{setName}",
+                defaults: new { controller = "Fish", action = "Guess"}
+            );
+
+            routes.MapRoute(
+                name: "Sets",
+                url: "Sets/{action}",
+                defaults: new { controller = "Sets", action = "AllSets" }
             );
 
             routes.MapRoute(

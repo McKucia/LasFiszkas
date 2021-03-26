@@ -25,6 +25,7 @@ function check() {
     if (guess.value.toLowerCase() == fishBack.textContent.toLowerCase()) {
         thumbAni();
         ani();
+        points++;
     }
     else {
         var wrongAni = [
@@ -36,20 +37,33 @@ function check() {
     }
 }
 
+var points = 0;
+var length;
 function ProcessAndUpdate(result) {
     var guess = document.querySelector('.guess textarea');
     var button = document.querySelector('.guess button');
     var nextBtn = document.querySelector('.guess a');
 
-    guess.style.display = 'block';
-    button.style.display = 'block';
-    nextBtn.style.display = 'none';
+    if (result == "thatsIt") {
+        nextBtn.style.display = 'none';
+        guess.style.display = 'none';
+        var score = '<div class="score">Twój wynik' + points + "/" + length + '</div>';
 
-    nextBtn.innerHTML = 'Dalej';
-    nextBtn.style.background = 'var(--yellow)';
-    nextBtn.style.color = 'var(--red)';
+        $('#update').html(score);
+        points = 0;
+    }
+    else {
+        length = result.SetLength;
+        guess.style.display = 'block';
+        button.style.display = 'block';
+        nextBtn.style.display = 'none';
 
-    var template = $('#fishTmpl').html();
-    var html = Mustache.to_html(template, result);
-    $('#update').html(html);
+        nextBtn.innerHTML = 'Dalej';
+        nextBtn.style.background = 'var(--yellow)';
+        nextBtn.style.color = 'var(--red)';
+
+        var template = $('#fishTmpl').html();
+        var html = Mustache.to_html(template, result);
+        $('#update').html(html);
+    }
 }

@@ -20,6 +20,12 @@ namespace LasFiszkas
             );
 
             routes.MapRoute(
+                name: "Summary",
+                url: "Fish/Summary",
+                defaults: new { controller = "Fish", action = "Summary" }
+            );
+
+            routes.MapRoute(
                 name: "Guess",
                 url: "Fish/Guess/set-{setName}",
                 defaults: new { controller = "Fish", action = "Guess"}

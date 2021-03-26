@@ -14,31 +14,43 @@ namespace LasFiszkas.Controllers
         public ActionResult NewSet() => View();
 
         [HttpPost]
-        public ActionResult NewSet(/*List<Fish> fishes, */HttpPostedFileBase uploadImage)
+        public ActionResult NewSet(List<Fish> fishes, HttpPostedFileBase uploadImage)
         {
-            var imageLength = uploadImage.ContentLength;
-            byte[] input = new byte[imageLength];
-            uploadImage.InputStream.Read(input, 0, imageLength);
 
-            /*            if (!ModelState.IsValid)
-                            return View(fishes);
+            if (!ModelState.IsValid)
+                return View(fishes);
 
-                        else
-                        {
-                            FishContext db = new FishContext();
-                            Set newSet = new Set { Name = "Test", Description = "Test to jest", IconFilename = "test.png" };
-                            db.Sets.Add(newSet);
+            else
+            {
+                Set newSet;
+                if (uploadImage != null)
+                {
+                    var imageLength = uploadImage.ContentLength;
+                    byte[] input = new byte[imageLength];
+                    uploadImage.InputStream.Read(input, 0, imageLength);
+                    newSet = new Set { Name = "Test", Description = "Test to jest", ImageFIle = input };
+                }
+                else
+                {
+                    newSet = new Set { Name = "Test", Description = "Test to jest" };
+                }
 
-                            foreach (var f in fishes)
-                            {
-                                f.Set = newSet;
-                                db.Fishes.Add(f);
-                            }
-                            db.SaveChanges();
-                            return View();
-                        }*/
 
-            return View("ShowImage", input);
+                FishContext db = new FishContext();
+                db.Sets.Add(newSet);
+
+                int innerId = 1;
+                foreach (var f in fishes)
+                {
+                    f.FishInnerId = innerId;
+                    innerId++;
+                    f.Set = newSet;
+                    db.Fishes.Add(f);
+                }
+                db.SaveChanges();
+
+                return RedirectToAction("AllSets");
+            }
         }
 
         public ActionResult AllSets()

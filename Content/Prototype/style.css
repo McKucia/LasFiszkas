@@ -426,3 +426,22 @@ main {
         height: 100%;
         object-fit: cover;
     }
+
+.score {
+    margin: auto;
+    color: wheat;
+    font-size: 40px;
+    position: relative;
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from { color: wheat; }
+
+    to {
+        transform: translate(0px, 40px);
+        color: black; 
+    }
+}

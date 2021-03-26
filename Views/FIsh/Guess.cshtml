@@ -1,6 +1,5 @@
-﻿@model string
-@{
-    ViewBag.Title = Model;
+﻿@{
+    ViewBag.Title = "Guess";
 }
 
 <main>
@@ -10,7 +9,8 @@
     <div class="form-group guess">
         <textarea name="guess" cols="30" rows="3" maxlength="31" style="display: none;"></textarea>
         <button class="button guessButton" type="button" onclick="check()" style="display: none;">Sprawdź!</button>
-        @Ajax.ActionLink("Zaczynamy!", "Next", "Fish", new { setName = Model }, new AjaxOptions()
+
+        @Ajax.ActionLink("Zaczynamy!", "Next", "Fish", new { setName = ViewBag.setName }, new AjaxOptions()
            {
                UpdateTargetId = "update",
                OnSuccess = "ProcessAndUpdate",
@@ -32,6 +32,7 @@
     </div>
     <img class="thumb" src="@Url.Content("~/Content/Prototype/img/thumb-up.png")" width="60" height="60">
 </script>
+
 
 @section ScriptsBottom{
     <script type="text/javascript" src="@Url.Content("~/Content/Prototype/scripts/mainPage.js")"></script>

@@ -20,7 +20,7 @@ namespace LasFiszkas.Models
         public string Description { get; set; }
 
         [ScaffoldColumn(false)]
-        public string IconFilename { get; set; }
+        public byte[] ImageFIle { get; set; }
 
         public virtual ICollection<Fish> Fishes { get; set; }
     }

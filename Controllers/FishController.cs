@@ -11,22 +11,29 @@ namespace LasFiszkas.Controllers
     public class FishController : Controller
     {
         public static int rowIndex;
+        FishContext db;
 
         public ActionResult Next(string setName)
         {
-            FishContext db = new FishContext();
+            db = new FishContext();
             var foodSet = db.Sets.Where(s => s.Name == setName).FirstOrDefault();
             if (foodSet == null)
             {
                 Response.StatusCode = 404;
-                Response.TrySkipIisCustomErrors = true;
-                return View("my404Error");
+                return null;
             }
 
             rowIndex++;
             Fish fish = foodSet.Fishes.ToList().Find(f => f.FishInnerId == rowIndex);
-            FishVM fishVM = new FishVM { EspContent = fish.EspContent, PlContent = fish.PlContent };
-            
+            if(fish == null)
+            {
+                return Json("thatsIt", JsonRequestBehavior.AllowGet);
+            }
+
+            FishVM fishVM = new FishVM { 
+                EspContent = fish.EspContent, 
+                PlContent = fish.PlContent, 
+                SetLength = foodSet.Fishes.Count() };
 
             return Json(fishVM, JsonRequestBehavior.AllowGet);
         }
@@ -34,8 +41,10 @@ namespace LasFiszkas.Controllers
 
         public ActionResult Guess(string setName)
         {
+            ViewBag.setName = setName;
             rowIndex = 0;
-            return View((object)setName);
+
+            return View();
         }
     }
 }

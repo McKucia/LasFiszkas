@@ -3,26 +3,36 @@
     ViewBag.Title = "Twoje Zestawy";
 }
 
-
-    <div class="col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 sets">
-        @foreach (var set in Model)
+<div class="col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 sets">
+    @foreach (var set in Model)
+    {
+        string imgSrc;
+        if(set.ImageFIle != null)
         {
-            <div class="set">
-                <figure>
-                    <img src="@Url.Content("~/Content/Prototype/img/mc.jpg")" alt="set">
-                </figure>
-                <figcaption>
-                    <h4>@set.Name</h4>
-                    <div class="buttons">
-                        <a href='@Url.Action("Guess", "Fish", new RouteValueDictionary(new { setName = set.Name }) )'>Graj</a>
-                        <a href="#">Edytuj</a>
-                        <a href="#">Usuń</a>
-                    </div>
-                </figcaption>
-            </div>
+            var base64 = Convert.ToBase64String(set.ImageFIle);
+            imgSrc = string.Format("data:image/png;base64,{0}", base64);
+        }
+        else
+        {
+            imgSrc = Url.Content("~/Content/Prototype/img/flag.jpg");
         }
 
-    </div>
+        <div class="set">
+            <figure>
+                <img src='@imgSrc' alt="set" />
+            </figure>
+            <figcaption>
+                <h4>@set.Name</h4>
+                <div class="buttons">
+                    <a href='@Url.Action("Guess", "Fish", new RouteValueDictionary(new { setName = set.Name }) )'>Graj</a>
+                    <a href="#">Edytuj</a>
+                    <a href="#">Usuń</a>
+                </div>
+            </figcaption>
+        </div>
+    }
+
+</div>
 
 
 

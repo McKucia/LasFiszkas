@@ -28,10 +28,4 @@ namespace LasFiszkas.Models
 
         public virtual Set Set { get; set; }
     }
-
-    public class FishVM
-    {
-        public string EspContent { get; set; }
-        public string PlContent { get; set; }
-    }
 }

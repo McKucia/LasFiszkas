@@ -13,9 +13,9 @@ namespace LasFiszkas.DAL
         {
             var sets = new List<Set>
             {
-                new Set() { Name = "Jedzenie", Description = "To co na stole i w lodówce", IconFilename = "food.png" },
-                new Set() { Name = "Instrumenty", Description = "Ba dum tss", IconFilename = "guitar.png" },
-                new Set() { Name = "Codzienność", Description = "Czynności codzienne", IconFilename = "everyday.png" }
+                new Set() { Name = "Jedzenie", Description = "To co na stole i w lodówce" },
+                new Set() { Name = "Instrumenty", Description = "Ba dum tss" },
+                new Set() { Name = "Codzienność", Description = "Czynności codzienne" }
             };
 
             sets.ForEach(s => context.Sets.Add(s));

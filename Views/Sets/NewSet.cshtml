@@ -6,21 +6,22 @@
 
     @using (Html.BeginForm("NewSet", "Sets", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
+        <span>Dodaj zdjęcie (maksymalna wielkość pliku: 400kB)</span>
         <input type="file" name="uploadImage" />
-@*        <table class="newFish">
+        <table class="newFish">
             @for (int i = 0; i < 3; i++)
             {
                 <tr>
                     <td>Przód:</td>
-                    <td>@Html.TextBoxFor(f => f[i].PlContent)</td>
+                    <td>@Html.TextBoxFor(f => f[i].PlContent, new { @Value = "Dormir" })</td>
                     <td>@Html.ValidationMessageFor(f => f[i].PlContent)</td>
 
                     <td>Tył:</td>
-                    <td>@Html.TextBoxFor(f => f[i].EspContent)</td>
+                    <td>@Html.TextBoxFor(f => f[i].EspContent, new { @Value = "Spać" })</td>
                     <td>@Html.ValidationMessageFor(f => f[i].EspContent)</td>
 
                 </tr>
             }
-        </table>*@
+        </table>
         <input type="submit" value="Dodaj" class="button guessButton"/>
     }

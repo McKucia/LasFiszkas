@@ -427,21 +427,33 @@ main {
         object-fit: cover;
     }
 
-.score {
-    margin: auto;
-    color: wheat;
-    font-size: 40px;
+@keyframes fadeIn {
+    from { opacity: 0; }
+
+    to {
+        transform: translate(0px, 40px);
+        opacity: 1;
+    }
+}
+
+#flexContainer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
     position: relative;
     animation-name: fadeIn;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
 }
 
-@keyframes fadeIn {
-    from { color: wheat; }
-
-    to {
-        transform: translate(0px, 40px);
-        color: black; 
+    #flexContainer .fish {
+        cursor: default;
+        width: 210px;
+        height: 130px;
+        margin: 10px 30px 10px 30px;
     }
-}
+
+    #flexContainer .button {
+        margin: 0px 10px 0px 10px;
+    }

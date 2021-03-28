@@ -3,8 +3,8 @@
 }
 
 <main>
-    <article id="update">
-    </article>
+    <div id="update">
+    </div>
 
     <div class="form-group guess">
         <textarea name="guess" cols="30" rows="3" maxlength="31" style="display: none;"></textarea>
@@ -15,22 +15,48 @@
                UpdateTargetId = "update",
                OnSuccess = "ProcessAndUpdate",
                LoadingElementId = "loading",
-           }, new { @class = "button nextButton", @style = "color: var(--red); background-color: var(--yellow)" })
+           }, new { @class = "button nextButton", @style = "color: var(--red);" })
     </div>
     <div id="loading" class="loader" style="display: none; margin: auto;"></div>
 </main>
 
 <script id="fishTmpl" type="text/template">
-    <img class="thumb" src="@Url.Content("~/Content/Prototype/img/thumb-up.png")" width="60" height="60">
-    <div class="fish" onclick="ani()">
-        <div class="fish-inner">
-            <div class="fish-front" maxlength="34">
-                {{EspContent}}
+    <article>
+        <img class="thumb" src="@Url.Content("~/Content/Prototype/img/thumb-up.png")" width="60" height="60">
+        <div class="fish" onclick="ani()">
+            <div class="fish-inner">
+                <div class="fish-front" maxlength="34">
+                    {{EspContent}}
+                </div>
+                <div class="fish-back" maxlength="34">{{PlContent}}</div>
             </div>
-            <div class="fish-back" maxlength="34">{{PlContent}}</div>
+        </div>
+        <img class="thumb" src="@Url.Content("~/Content/Prototype/img/thumb-up.png")" width="60" height="60">
+    </article>
+</script>
+
+<script id="resultTmpl" type="text/template">
+    <div id="flexContainer">
+        <div class="fish">
+            <div class="fish-inner">
+                <div class="fish-front" style="background-color: var(--red); color: var(--white); padding: 38px; font-size: 28px;" maxlength="34">
+                    Źle: {{wrong}}
+                </div>
+            </div>
+        </div>
+        <div class="fish">
+            <div class="fish-inner">
+                <div class="fish-front" style="background-color: var(--yellow); color: var(--red); padding: 38px; font-size: 28px;" maxlength="34">
+                    Dobrze: {{correct}}
+                </div>
+            </div>
         </div>
     </div>
-    <img class="thumb" src="@Url.Content("~/Content/Prototype/img/thumb-up.png")" width="60" height="60">
+
+    <div id="flexContainer">
+        @Html.ActionLink("Jeszcze raz!", "Guess", new { setName = ViewBag.setName }, new { @class = "button guessButton", @style = "color: var(--white);" })
+        @Html.ActionLink("Wróc do zestawów", "AllSets", "Sets", null, new { @class = "button nextButton", @style = "color: var(--red);" })
+    </div>
 </script>
 
 

@@ -47,9 +47,10 @@ function ProcessAndUpdate(result) {
     if (result == "thatsIt") {
         nextBtn.style.display = 'none';
         guess.style.display = 'none';
-        var score = '<div class="score">Twój wynik' + points + "/" + length + '</div>';
 
-        $('#update').html(score);
+        var template = $('#resultTmpl').html();
+        var html = Mustache.render(template, { correct: points, wrong: length - points });
+        $('#update').html(html);
         points = 0;
     }
     else {

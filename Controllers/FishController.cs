@@ -19,8 +19,7 @@ namespace LasFiszkas.Controllers
             var foodSet = db.Sets.Where(s => s.Name == setName).FirstOrDefault();
             if (foodSet == null)
             {
-                Response.StatusCode = 404;
-                return null;
+                return HttpNotFound();
             }
 
             rowIndex++;
@@ -33,7 +32,7 @@ namespace LasFiszkas.Controllers
             FishVM fishVM = new FishVM { 
                 EspContent = fish.EspContent, 
                 PlContent = fish.PlContent, 
-                SetLength = foodSet.Fishes.Count() };
+            };
 
             return Json(fishVM, JsonRequestBehavior.AllowGet);
         }

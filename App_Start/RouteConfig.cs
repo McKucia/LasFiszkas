@@ -38,10 +38,16 @@ namespace LasFiszkas
             );
 
             routes.MapRoute(
+                name: "Account",
+                url: "Account/{action}",
+                defaults: new { controller = "Account", action = "Login" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Main" },
-                constraints: new { action = "Main"}
+                constraints: new { action = "Main" }
             );
         }
     }

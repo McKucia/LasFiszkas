@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <img src="@Url.Content("~/Content/Prototype/img/majkel.jpg")" alt="Profile photo" class="profile-photo">
+            <a style="color: black; font-size: 40px">@User.Identity.GetUserName()</a>
+            <a href="#">Twoje konto</a>
+            <a href='@Url.Action("AllSets", "Sets")'>Twoje zestawy</a>
+            <a href="#">Kontakt</a>
+            <a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
+        </div>
+    }
+}
+else
+{
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href='@Url.Action("Register", "Account")'>Zarejestruj</a>
+        <a href='@Url.Action("Login", "Account")'>Zaloguj</a>
+        <a href="#">Kontakt</a>
+    </div>
+}
+

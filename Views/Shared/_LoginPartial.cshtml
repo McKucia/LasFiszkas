@@ -1,13 +1,28 @@
 ﻿@using Microsoft.AspNet.Identity
+@using LasFiszkas.App_Start;
+
+@using Microsoft.AspNet.Identity.Owin;
 
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
+
+        var user = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
+        string imgSrc = Url.Content("~/Content/Prototype/img/flag.jpg");
+        if (user != null)
+        {
+            if (user.UserData.ProfileImageFIle != null)
+            {
+                var base64 = Convert.ToBase64String(user.UserData.ProfileImageFIle);
+                imgSrc = string.Format("data:image/png;base64,{0}", base64);
+            }
+        }
+
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <img src="@Url.Content("~/Content/Prototype/img/majkel.jpg")" alt="Profile photo" class="profile-photo">
+            <img src='@imgSrc' alt="Profile photo" class="profile-photo">
             <a style="color: black; font-size: 40px">@User.Identity.GetUserName()</a>
             <a href="#">Twoje konto</a>
             <a href='@Url.Action("AllSets", "Sets")'>Twoje zestawy</a>

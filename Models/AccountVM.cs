@@ -21,7 +21,7 @@ namespace LasFiszkas.Models
     public class RegisterVM
     {
         [MaxLength(20)]
-        [Required(ErrorMessage = "Podaj swój nick")]
+        [Required(ErrorMessage = "Pole Nick jest wymagane")]
         public string NickName { get; set; }
 
         [Required]

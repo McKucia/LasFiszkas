@@ -40,13 +40,41 @@ namespace LasFiszkas.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginVM model, string returnUrl)
+        public async Task<ActionResult> Login(LoginVM model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
+            ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
+            if(signedUser != null)
+            {
+                var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToLocal(returnUrl); //in order not do direct to other site
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendConde", new { ReturnUrl = returnUrl });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("loginerror", "Nieudana próba logowania.");
+                        return View(model);
+                }
+            }
+            ModelState.AddModelError("loginerror", "Nieudana próba logowania.");
+            return View(model);
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
             return RedirectToAction("Main", "Home");
         }
 
@@ -113,6 +141,25 @@ namespace LasFiszkas.Controllers
             AuthenticationManager.SignOut();
 
             return RedirectToAction("Main", "Home");
+        }
+
+        public async Task<ActionResult> Data()
+        {
+            if (Request.IsAuthenticated)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                RegisterVM userVM = new RegisterVM()
+                {
+                    Email = user.UserData.Email,
+                    NickName = user.UserData.NickName,
+                    ProfileImageFIle = user.UserData.ProfileImageFIle
+                };
+                return View(userVM);
+            }
+            else
+            {
+                return RedirectToAction("Main", "Home");
+            }
         }
     }
 }

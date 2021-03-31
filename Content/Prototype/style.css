@@ -457,3 +457,10 @@ main {
     #flexContainer .button {
         margin: 0px 10px 0px 10px;
     }
+
+.loginTextBox {
+    font-size: 18px;
+    padding: 5px; 
+    width: 200px; 
+    height: 40px;
+}

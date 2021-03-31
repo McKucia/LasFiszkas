@@ -8,40 +8,34 @@
     {
         @Html.AntiForgeryToken()
 
-        @Html.ValidationMessage("loginerror", "")
+        @Html.ValidationSummary(false, "", new { @style = "display: table; font-size: 18px; margin: auto;" })
 
-        <table style="margin: auto;">
-            <tr>
-                <td>@Html.LabelFor(l => l.Email, "E-mail:", new { @style = "font-size: 25px; margin-right: 10px;" })</td>
-                <td>
-                    <div class="loginValidation">
-                        @Html.ValidationMessageFor(l => l.Email)
-                    </div>
-                    @Html.TextBoxFor(l => l.Email, new { @style = "font-size: 25px;" })
-                </td>
-            </tr>
+    <table style="margin: auto;">
+        <tr>
+            <td>@Html.LabelFor(l => l.Email, "E-mail:", new { @style = "font-size: 22px; margin-right: 10px;" })</td>
+            <td>
+                @Html.TextBoxFor(l => l.Email, new { @class = "loginTextBox" })
+            </td>
+        </tr>
 
-            <tr>
-                <td>@Html.LabelFor(l => l.Password, "Hasło:", new { @style = "font-size: 25px; margin-right: 10px;" })</td>
-                <td>
-                    <div class="loginValidation">
-                        @Html.ValidationMessageFor(l => l.Password)
-                    </div>
-                    @Html.PasswordFor(l => l.Password, new { @style = "font-size: 25px;" })
-                </td>
-            </tr>
+        <tr>
+            <td>@Html.LabelFor(l => l.Password, "Hasło:", new { @style = "font-size: 22px; margin-right: 10px;" })</td>
+            <td>
+                @Html.PasswordFor(l => l.Password, new { @class = "loginTextBox" })
+            </td>
+        </tr>
 
-            <tr>
-                <td colspan="3" style="text-align: center;">
-                    <div style="margin-top: 10px; text-align: end;">
-                        @Html.CheckBoxFor(l => l.RememberMe, new { @checked = "checked" })
-                        @Html.LabelFor(l => l.RememberMe, "Zapamiętaj mnie")
-                    </div>
+        <tr>
+            <td colspan="3" style="text-align: center;">
+                <div style="margin-top: 10px; text-align: end;">
+                    @Html.CheckBoxFor(l => l.RememberMe, new { @checked = "checked" })
+                    @Html.LabelFor(l => l.RememberMe, "Zapamiętaj mnie")
+                </div>
 
-                    <input type="submit" value="Zaloguj" style="font-size: 17px; margin-top: 12px; padding: 2px 8px 2px 8px;" />
-                </td>
-            </tr>
-        </table>
+                <input type="submit" value="Zaloguj" style="font-size: 17px; margin-top: 12px; padding: 2px 8px 2px 8px;" />
+            </td>
+        </tr>
+    </table>
     }
 </main>
 

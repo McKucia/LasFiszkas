@@ -3,64 +3,52 @@
     ViewBag.Title = "Register";
 }
 
-<main>
-    @using (Html.BeginForm("Register", "Account", new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 
-        @Html.ValidationMessage("loginerror", "")
+    @Html.ValidationSummary(false, "", new { @style = "display: table; font-size: 18px; margin: auto;" })
 
+    <div style="text-align: center;">
         <span>Dodaj zdjęcie (maksymalna wielkość pliku: 400kB)</span>
-        <input type="file" name="uploadImage" />
-        <table style="margin: auto;">
-            <tr>
-                <td>@Html.LabelFor(l => l.Email, "E-mail:", new { @style = "font-size: 25px; margin-right: 10px;" })</td>
-                <td>
-                    <div class="loginValidation">
-                        @Html.ValidationMessageFor(l => l.Email)
-                    </div>
-                    @Html.TextBoxFor(l => l.Email, new { @style = "font-size: 25px;" })
-                </td>
-            </tr>
+        <input type="file" name="uploadImage" style="margin-left: 20px; padding: 10px;" />
+    </div>
+    <table style="margin: auto;">
+        <tr>
+            <td>@Html.LabelFor(l => l.Email, "E-mail:", new { @style = "font-size: 22px; margin-right: 10px;" })</td>
+            <td>
+                @Html.TextBoxFor(l => l.Email, new { @class = "loginTextBox" })
+            </td>
+        </tr>
 
-            <tr>
-                <td>@Html.LabelFor(l => l.NickName, "Nick:", new { @style = "font-size: 25px; margin-right: 10px;" })</td>
-                <td>
-                    <div class="loginValidation">
-                        @Html.ValidationMessageFor(l => l.NickName)
-                    </div>
-                    @Html.TextBoxFor(l => l.NickName, new { @style = "font-size: 25px;" })
-                </td>
-            </tr>
+        <tr>
+            <td>@Html.LabelFor(l => l.NickName, "Nick:", new { @style = "font-size: 22px; margin-right: 10px;" })</td>
+            <td>
+                @Html.TextBoxFor(l => l.NickName, new { @class = "loginTextBox" })
+            </td>
+        </tr>
 
-            <tr>
-                <td>@Html.LabelFor(l => l.Password, "Hasło:", new { @style = "font-size: 25px; margin-right: 10px;" })</td>
-                <td>
-                    <div class="loginValidation">
-                        @Html.ValidationMessageFor(l => l.Password)
-                    </div>
-                    @Html.PasswordFor(l => l.Password, new { @style = "font-size: 25px;" })
-                </td>
-            </tr>
+        <tr>
+            <td>@Html.LabelFor(l => l.Password, "Hasło:", new { @style = "font-size: 22px; margin-right: 10px;" })</td>
+            <td>
+                @Html.PasswordFor(l => l.Password, new { @class = "loginTextBox" })
+            </td>
+        </tr>
 
-            <tr>
-                <td>@Html.LabelFor(l => l.ConfirmPassword, "Powtórz hasło:", new { @style = "font-size: 25px; margin-right: 10px;" })</td>
-                <td>
-                    <div class="loginValidation">
-                        @Html.ValidationMessageFor(l => l.ConfirmPassword)
-                    </div>
-                    @Html.PasswordFor(l => l.ConfirmPassword, new { @style = "font-size: 25px;" })
-                </td>
-            </tr>
+        <tr>
+            <td>@Html.LabelFor(l => l.ConfirmPassword, "Powtórz hasło:", new { @style = "font-size: 22px; margin-right: 10px;" })</td>
+            <td>
+                @Html.PasswordFor(l => l.ConfirmPassword, new { @class = "loginTextBox" })
+            </td>
+        </tr>
 
-            <tr>
-                <td colspan="3" style="text-align: center;">
-                    <input type="submit" value="Zaloguj" style="font-size: 17px; margin-top: 12px; padding: 2px 8px 2px 8px;" />
-                </td>
-            </tr>
-        </table>
-    }
-</main>
+        <tr>
+            <td colspan="3" style="text-align: center;">
+                <input type="submit" value="Zarejestruj" style="font-size: 17px; margin-top: 12px; padding: 2px 8px 2px 8px;" />
+            </td>
+        </tr>
+    </table>
+}
 
 @section ScriptsBottom{
     @System.Web.Optimization.Scripts.Render("~/bundles/jquery")

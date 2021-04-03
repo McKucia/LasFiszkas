@@ -12,6 +12,7 @@ namespace LasFiszkas.Models
     // Możesz dodać dane profilu dla użytkownika, dodając więcej właściwości do klasy ApplicationUser. Odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=317594, aby dowiedzieć się więcej.
     public class ApplicationUser : IdentityUser
     {
+        public virtual ICollection<Set> Sets { get; set; }
 
         public UserData UserData { get; set; }
 

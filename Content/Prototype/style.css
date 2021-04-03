@@ -101,16 +101,13 @@ header {
     }
 
 @media screen and (max-width: 500px) {
-    #logo h2 {
-        font-size: 70px;
-    }
-
     .open {
         margin-left: 10px !important;
     }
 }
 
 .open {
+    margin-right: 20px !important;
     line-height: 500%;
     margin-left: 30px;
     font-size: 30px;
@@ -463,4 +460,14 @@ main {
     padding: 5px; 
     width: 200px; 
     height: 40px;
+}
+
+.setInput {
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid grey;
+    text-align: center;
+    opacity: 0.7;
+    outline: none;
 }

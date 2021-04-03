@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -182,6 +188,18 @@
     <Compile Include="Migrations\202103301028353_ProfileImageFile.designer.cs">
       <DependentUpon>202103301028353_ProfileImageFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104021429577_SetToUser.cs" />
+    <Compile Include="Migrations\202104021429577_SetToUser.designer.cs">
+      <DependentUpon>202104021429577_SetToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104021437233_IntToStringID.cs" />
+    <Compile Include="Migrations\202104021437233_IntToStringID.designer.cs">
+      <DependentUpon>202104021437233_IntToStringID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104021502098_ApplicationUserInSet.cs" />
+    <Compile Include="Migrations\202104021502098_ApplicationUserInSet.designer.cs">
+      <DependentUpon>202104021502098_ApplicationUserInSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fish.cs" />
     <Compile Include="Models\FishVM.cs" />
@@ -239,14 +257,13 @@
     <Content Include="Views\Home\Main.cshtml" />
     <Content Include="Views\Shared\my404Error.cshtml" />
     <Content Include="Views\Sets\AllSets.cshtml" />
-    <Content Include="Views\FIsh\Summary.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Account\Data.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -273,6 +290,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103301028353_ProfileImageFile.resx">
       <DependentUpon>202103301028353_ProfileImageFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104021429577_SetToUser.resx">
+      <DependentUpon>202104021429577_SetToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104021437233_IntToStringID.resx">
+      <DependentUpon>202104021437233_IntToStringID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104021502098_ApplicationUserInSet.resx">
+      <DependentUpon>202104021502098_ApplicationUserInSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

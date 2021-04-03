@@ -4,24 +4,36 @@
 }
 
 
-    @using (Html.BeginForm("NewSet", "Sets", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <span>Dodaj zdjęcie (maksymalna wielkość pliku: 400kB)</span>
-        <input type="file" name="uploadImage" />
-        <table class="newFish">
-            @for (int i = 0; i < 3; i++)
-            {
-                <tr>
-                    <td>Przód:</td>
-                    <td>@Html.TextBoxFor(f => f[i].PlContent, new { @Value = "Dormir" })</td>
-                    <td>@Html.ValidationMessageFor(f => f[i].PlContent)</td>
+@using (Html.BeginForm("NewSet", "Sets", FormMethod.Post, new { enctype = "multipart/form-data", autocomplete = "off" }))
+{
+    <div style="margin-top: 10px;">
+        <h1 style="display:block; text-align: center;">
+            <input class="setInput" id="SetName" name="SetName" type="text" placeholder="Wpisz nazwę zestawu">
+        </h1>
 
-                    <td>Tył:</td>
-                    <td>@Html.TextBoxFor(f => f[i].EspContent, new { @Value = "Spać" })</td>
-                    <td>@Html.ValidationMessageFor(f => f[i].EspContent)</td>
+        <h4 style="display:block; text-align: center;">
+            <input class="setInput" id="SetDescription" name="SetDescription" type="text" placeholder="Opis" style="margin-bottom: 10px;">
+        </h4>
+    </div>
 
-                </tr>
-            }
-        </table>
-        <input type="submit" value="Dodaj" class="button guessButton"/>
-    }
+    <table class="newFish">
+        @for (int i = 0, j = i + 1; i < 3; i++)
+        {
+            <tr>
+                <td>@j Przód:</td>
+                <td>@Html.TextBoxFor(f => f[i].PlContent, new { @Value = "Dormir", @style= "padding: 3px; margin-right: 20px;" })</td>
+                <td>@Html.ValidationMessageFor(f => f[i].PlContent)</td>
+
+                <td>Tył:</td>
+                <td>@Html.TextBoxFor(f => f[i].EspContent, new { @Value = "Spać", @style = "padding: 3px;" })</td>
+                <td>@Html.ValidationMessageFor(f => f[i].EspContent)</td>
+
+            </tr>
+        }
+    </table>
+    <div style="text-align:center; margin-top: 20px">
+        <span style="margin-right: 15px">Dodaj zdjęcie (maksymalna wielkość pliku: 400kB)</span>
+        <input type="file" name="uploadImage">
+    </div>
+    <input type="submit" value="Dodaj" class="button guessButton" style="margin-top: 20px; transform: scale(0.9);">
+}

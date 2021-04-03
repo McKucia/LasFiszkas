@@ -12,6 +12,9 @@ namespace LasFiszkas.Models
         [ScaffoldColumn(false)]
         public int SetId { get; set; }
 
+        [ScaffoldColumn(false)]
+        public string UserId { get; set; }
+
         [StringLength(20)]
         [Required(ErrorMessage = "Pole nie może być puste.")]
         public string Name { get; set; }
@@ -23,5 +26,6 @@ namespace LasFiszkas.Models
         public byte[] ImageFIle { get; set; }
 
         public virtual ICollection<Fish> Fishes { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

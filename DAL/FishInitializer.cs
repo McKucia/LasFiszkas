@@ -11,7 +11,7 @@ namespace LasFiszkas.DAL
     {
         protected override void Seed(FishContext context)
         {
-            var sets = new List<Set>
+/*            var sets = new List<Set>
             {
                 new Set() { Name = "Jedzenie", Description = "To co na stole i w lodówce" },
                 new Set() { Name = "Instrumenty", Description = "Ba dum tss" },
@@ -37,7 +37,7 @@ namespace LasFiszkas.DAL
             };
 
             fishes.ForEach(f => context.Fishes.Add(f));
-            context.SaveChanges();
+            context.SaveChanges();*/
 
         }
     }

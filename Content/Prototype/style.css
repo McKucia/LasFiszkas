@@ -10,12 +10,39 @@ body {
     height: 100vh !important;
 }
 
+input {
+    line-height: initial !important;
+}
+
 :root {
     --red: #d8460b;
     --yellow: #f9c13e;
     --blue: #007291;
     --white: #f9f2db;
     --pink: #f2624f;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border: none !important;
+}
+
+.table {
+    margin: auto;
+    width: 40% !important;
+}
+
+table th {
+    text-align: center;
+}
+
+.prettyInput {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
+    outline: none;
+    padding: 4px 10px;
+    min-width: 130px;
+    width: 80%;
 }
 
 header {
@@ -30,6 +57,7 @@ header {
 
     #logo h2 {
         font-size: 90px;
+        font-weight: 700;
     }
 
         #logo h2:nth-child(1) {
@@ -101,9 +129,8 @@ header {
     }
 
 @media screen and (max-width: 500px) {
-    .open {
-        margin-left: 10px !important;
-    }
+    #logo h2 { font-size: 70px; }
+    .open { margin-left: 10px !important; }
 }
 
 .open {
@@ -193,10 +220,6 @@ main {
     margin: auto;
 }
 
-    .newFish tr td {
-        padding: 4px;
-    }
-
 .thumb-transform {
     visibility: initial;
     transform: translateY(-70px);
@@ -237,10 +260,12 @@ main {
 }
 
     .guessButton:hover {
+        color: var(--white);
         background-color: #c7350a
     }
 
     .guessButton:active {
+        color: var(--white);
         background-color: #c7350a;
         box-shadow: 0 3px #666;
         transform: translateY(3px);
@@ -252,10 +277,13 @@ main {
 }
 
     .nextButton:hover {
+        color: var(--red);
         background-color: #d8b02d
     }
 
+
     .nextButton:active {
+        color: var(--red);
         background-color: #d8b02d;
         box-shadow: 0 3px #666;
         transform: translateY(3px);
@@ -470,4 +498,58 @@ main {
     text-align: center;
     opacity: 0.7;
     outline: none;
+}
+
+.plus {
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 37px;
+    color: var(--white);
+    background-color: var(--pink);
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
+}
+
+    .plus:hover {
+        background-color: #f3735f;
+    }
+
+.inputFile + label {
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.inputFile:hover + label:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.validationField {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    font-size: 16px;
+    color: var(--red);
+    top: -5px;
+    left: 0;
+    text-align: center;
+    cursor: default;
 }

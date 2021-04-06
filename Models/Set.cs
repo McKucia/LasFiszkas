@@ -16,7 +16,7 @@ namespace LasFiszkas.Models
         public string UserId { get; set; }
 
         [StringLength(20)]
-        [Required(ErrorMessage = "Pole nie może być puste.")]
+        [Required(ErrorMessage = "Pole nie może być puste")]
         public string Name { get; set; }
 
         [StringLength(60)]

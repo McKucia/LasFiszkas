@@ -7,33 +7,84 @@
 @using (Html.BeginForm("NewSet", "Sets", FormMethod.Post, new { enctype = "multipart/form-data", autocomplete = "off" }))
 {
     <div style="margin-top: 10px;">
-        <h1 style="display:block; text-align: center;">
-            <input class="setInput" id="SetName" name="SetName" type="text" placeholder="Wpisz nazwę zestawu">
+        <h1 style="position: relative; width: fit-content; margin: auto;">
+            @Html.ValidationMessageFor(f => f[0].Set.Name, "", new { @class = "validationField" })
+            @Html.TextBoxFor(f => f[0].Set.Name, new { @class = "setInput", @placeholder = "Wpisz nazwę zestawu" })
         </h1>
 
         <h4 style="display:block; text-align: center;">
-            <input class="setInput" id="SetDescription" name="SetDescription" type="text" placeholder="Opis" style="margin-bottom: 10px;">
+            @Html.TextBoxFor(f => f[0].Set.Description, new { @class = "setInput", @placeholder = "Opis", @style = "margin-bottom: 10px;" })
         </h4>
     </div>
 
-    <table class="newFish">
-        @for (int i = 0, j = i + 1; i < 3; i++)
-        {
-            <tr>
-                <td>@j Przód:</td>
-                <td>@Html.TextBoxFor(f => f[i].PlContent, new { @Value = "Dormir", @style= "padding: 3px; margin-right: 20px;" })</td>
-                <td>@Html.ValidationMessageFor(f => f[i].PlContent)</td>
+    <div class="container-fluid">
+        <table class="table text-center newFish">
+            <thead>
+                <tr>
+                    <th scope="col">Przód</th>
+                    <th scope="col">Tył</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="position: relative;">
+                        @Html.TextBoxFor(f => f[0].PlContent, new { @class = "prettyInput" })
+                    </td>
 
-                <td>Tył:</td>
-                <td>@Html.TextBoxFor(f => f[i].EspContent, new { @Value = "Spać", @style = "padding: 3px;" })</td>
-                <td>@Html.ValidationMessageFor(f => f[i].EspContent)</td>
 
-            </tr>
-        }
-    </table>
+                    <td style="position: relative;">
+                        @Html.TextBoxFor(f => f[0].EspContent, new { @class = "prettyInput" })
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <span class="plus" onclick="addFishInput()">+</span>
+
     <div style="text-align:center; margin-top: 20px">
         <span style="margin-right: 15px">Dodaj zdjęcie (maksymalna wielkość pliku: 400kB)</span>
-        <input type="file" name="uploadImage">
+        <input class="inputFile" type="file" name="file" id="file">
+        <label for="file" class="custom-file-upload">
+            Wybierz plik
+        </label>
     </div>
     <input type="submit" value="Dodaj" class="button guessButton" style="margin-top: 20px; transform: scale(0.9);">
+}
+
+<script id="trTmpl" type="text/template">
+    <tr>
+        <td>
+            <input value="" autocomplete="off" class="prettyInput" data-val="true"
+                   data-val-length="Pole PlContent musi być ciągiem o maksymalnej długości 35."
+                   data-val-length-max="35" data-val-required="Pole nie może być puste." name="[{{cntr}}].PlContent"
+                   type="text">
+        </td>
+
+        <td>
+            <input value="" autocomplete="off" class="prettyInput" data-val="true"
+                   data-val-length="Pole EspContent musi być ciągiem o maksymalnej długości 35."
+                   data-val-length-max="35" data-val-required="Pole nie może być puste." name="[{{cntr}}].EspContent"
+                   type="text">
+        </td>
+    </tr>
+</script>
+
+<script>
+    var counter = 0;
+    function addFishInput() {
+        counter++;
+        var tbody = document.querySelector("tbody");
+        var newElem = document.createElement("tr");
+
+        var template = document.querySelector("#trTmpl").innerHTML;
+        var html = Mustache.render(template, { cntr: counter });
+        newElem.innerHTML = html;
+
+        tbody.appendChild(newElem);
+    }
+</script>
+
+@section ScriptsBottom{
+    @System.Web.Optimization.Scripts.Render("~/bundles/mustache")
 }

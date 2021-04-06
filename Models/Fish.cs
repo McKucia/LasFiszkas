@@ -19,11 +19,11 @@ namespace LasFiszkas.Models
         public int SetId { get; set; }
 
         [StringLength(35)]
-        [Required(ErrorMessage = "Pole nie może być puste.")]
+        [Required(ErrorMessage = "Pole nie może być puste")]
         public string EspContent { get; set; }
 
         [StringLength(35)]
-        [Required(ErrorMessage = "Pole nie może być puste.")]
+        [Required(ErrorMessage = "Pole nie może być puste")]
         public string PlContent { get; set; }
 
         public virtual Set Set { get; set; }

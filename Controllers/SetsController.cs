@@ -15,6 +15,8 @@ namespace LasFiszkas.Controllers
 {
     public class SetsController : Controller
     {
+        FishContext db;
+
         public ActionResult NewSet()
         {
             if (Request.IsAuthenticated)
@@ -28,7 +30,7 @@ namespace LasFiszkas.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewSet(List<Fish> fishes, string SetName, string SetDescription, HttpPostedFileBase uploadImage)
+        public ActionResult NewSet(List<Fish> fishes, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
                 return View(fishes);
@@ -36,16 +38,18 @@ namespace LasFiszkas.Controllers
             else
             {
                 var currentUserId = User.Identity.GetUserId();
-                Set newSet = new Set { Name = SetName, Description = SetDescription, UserId = currentUserId };
-                if (uploadImage != null)
+                Set newSet = new Set { Name = fishes[0].Set.Name , UserId = currentUserId };
+                newSet.Description = fishes[0].Set.Description != null ? fishes[0].Set.Description : null;
+
+                if (file != null)
                 {
-                    var imageLength = uploadImage.ContentLength;
+                    var imageLength = file.ContentLength;
                     byte[] input = new byte[imageLength];
-                    uploadImage.InputStream.Read(input, 0, imageLength);
+                    file.InputStream.Read(input, 0, imageLength);
                     newSet.ImageFIle = input;
                 }
 
-                FishContext db = new FishContext();
+                db = new FishContext();
                 db.Sets.Add(newSet);
 
                 int innerId = 1;
@@ -67,7 +71,7 @@ namespace LasFiszkas.Controllers
             if (Request.IsAuthenticated)
             {
                 string currentUserId = User.Identity.GetUserId();
-                FishContext db = new FishContext();
+                db = new FishContext();
                 var foodSets = db.Sets.Where(s => s.UserId == currentUserId).ToList();
 
                 return View(foodSets);
@@ -77,6 +81,18 @@ namespace LasFiszkas.Controllers
             {
                 return RedirectToAction("Login", "Account", new { returnUrl = Url.Action("AllSets", "Sets") });
             }
+        }
+
+        public ActionResult Delete(int setId)
+        {
+            db = new FishContext();
+            var delSet = db.Sets.Find(setId);
+            if(delSet != null)
+            {
+                db.Sets.Remove(delSet);
+                db.SaveChanges();
+            }
+            return RedirectToAction("AllSets");
         }
     }
 }

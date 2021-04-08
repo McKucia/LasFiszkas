@@ -3,9 +3,9 @@
     ViewBag.Title = "Twoje Zestawy";
 }
 
-<a href='@Url.Action("NewSet", "Sets")' class="button nextButton" style="margin: 20px 0 30px 0">Dodaj nowy zestaw</a>
+<a href='@Url.Action("NewSet", "Sets")' class="button guessButton" style="margin-bottom: 20px;">Dodaj nowy zestaw</a>
 
-<div class="col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 sets">
+<div class="col-10 col-sm-7 col-md-5 col-lg-4 col-xl-3 sets">
     @foreach (var set in Model)
     {
         string imgSrc;
@@ -27,7 +27,7 @@
                 <h4>@set.Name</h4>
                 <div class="buttons">
                     <a href='@Url.Action("Guess", "Fish", new RouteValueDictionary(new { setName = set.Name }) )'>Graj</a>
-                    <a href="#">Edytuj</a>
+                    <a href='@Url.Action("Edit", "Sets", new { setId = set.SetId })'>Edytuj</a>
                     <a href='@Url.Action("Delete", "Sets", new { setId = set.SetId })' onclick="return confirm('Czy na pewno chcesz usunąć ten zestaw?')">Usuń</a>
                 </div>
             </figcaption>

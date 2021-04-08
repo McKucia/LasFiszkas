@@ -7,7 +7,7 @@
 @using (Html.BeginForm("NewSet", "Sets", FormMethod.Post, new { enctype = "multipart/form-data", autocomplete = "off" }))
 {
     <div style="margin-top: 10px;">
-        <h1 style="position: relative; width: fit-content; margin: auto;">
+        <h1 style="position: relative; width: fit-content; margin: auto; margin-bottom: 20px;">
             @Html.ValidationMessageFor(f => f[0].Set.Name, "", new { @class = "validationField" })
             @Html.TextBoxFor(f => f[0].Set.Name, new { @class = "setInput", @placeholder = "Wpisz nazwę zestawu" })
         </h1>
@@ -49,7 +49,7 @@
             Wybierz plik
         </label>
     </div>
-    <input type="submit" value="Dodaj" class="button guessButton" style="margin-top: 20px; transform: scale(0.9);">
+    <input type="submit" value="Dodaj" class="button guessButton" style="margin-top: 20px;">
 }
 
 <script id="trTmpl" type="text/template">

@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -72,9 +73,9 @@ namespace LasFiszkas.Controllers
             {
                 string currentUserId = User.Identity.GetUserId();
                 db = new FishContext();
-                var foodSets = db.Sets.Where(s => s.UserId == currentUserId).ToList();
+                var sets = db.Sets.Where(s => s.UserId == currentUserId).ToList();
 
-                return View(foodSets);
+                return View(sets);
             }  
 
             else
@@ -85,14 +86,74 @@ namespace LasFiszkas.Controllers
 
         public ActionResult Delete(int setId)
         {
-            db = new FishContext();
-            var delSet = db.Sets.Find(setId);
-            if(delSet != null)
+            if (Request.IsAuthenticated) 
             {
-                db.Sets.Remove(delSet);
-                db.SaveChanges();
+                db = new FishContext();
+                var delSet = db.Sets.Find(setId);
+                if (delSet != null)
+                {
+                    db.Sets.Remove(delSet);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("AllSets");
             }
-            return RedirectToAction("AllSets");
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public ActionResult Edit(int setId)
+        {
+            if (Request.IsAuthenticated)
+            {
+                db = new FishContext();
+                var editSet = db.Sets.Find(setId);
+                if (editSet == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(editSet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit([Bind(Include = "Name,Description,Fishes,ImageFile")]Set set, int setId, HttpPostedFileBase file)
+        {
+            if (!ModelState.IsValid)
+                return View(set);
+
+            else
+            {
+                db = new FishContext();
+                var editSet = db.Sets.Find(setId);
+                editSet.Name = set.Name;
+                editSet.Description = set.Description != null ? set.Description : null;
+                if (file != null)
+                {
+                    var imageLength = file.ContentLength;
+                    byte[] input = new byte[imageLength];
+                    file.InputStream.Read(input, 0, imageLength);
+                    editSet.ImageFIle = input;
+                }
+                int i = 0;
+                foreach (var f in editSet.Fishes)
+                {
+                    f.PlContent = set.Fishes.ElementAt(i).PlContent;
+                    f.EspContent = set.Fishes.ElementAt(i).EspContent;
+                    i++;
+                }
+
+                db.Entry(editSet).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("AllSets");
+            }
         }
     }
 }

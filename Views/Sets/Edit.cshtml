@@ -1,0 +1,74 @@
+﻿@model LasFiszkas.Models.Set
+@{
+    ViewBag.Title = "Edit";
+
+    string imgSrc;
+    if (Model.ImageFIle != null)
+    {
+        var base64 = Convert.ToBase64String(Model.ImageFIle);
+        imgSrc = string.Format("data:image/png;base64,{0}", base64);
+    }
+    else
+    {
+        imgSrc = Url.Content("~/Content/Prototype/img/flag.jpg");
+    }
+}
+
+<div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-1" style="margin: auto;">
+    <img src='@imgSrc' alt="set" style="width: 100%; height: 100%; border: 3px solid wheat; border-radius: 15px;" />
+</div>
+
+@using (Html.BeginForm("Edit", "Sets", new { setId = Model.SetId }, FormMethod.Post, new { enctype = "multipart/form-data", autocomplete = "off" }))
+{
+    <div style="margin-top: 10px;">
+        <h1 style="position: relative; width: fit-content; margin: auto; margin-bottom: 20px;">
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "validationField" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "setInput", placeholder = Model.Name != null ? Model.Name : "Nazwa zestawu" })
+        </h1>
+
+        <h4 style="display:block; text-align: center;">
+            @Html.TextBoxFor(m => m.Description, new { @class = "setInput", placeholder = Model.Description != null ? Model.Description : "Opis", @style = "margin-bottom: 10px;" })
+        </h4>
+    </div>
+    <div class="container-fluid">
+        <table class="table text-center newFish">
+            <thead>
+                <tr>
+                    <th scope="col">Przód</th>
+                    <th scope="col">Tył</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.Fishes.Count; i++)
+                {
+                    <tr>
+                        <td style="position: relative;">
+                            <input autocomplete="off" class="prettyInput" data-val="true"
+                                   data-val-length="Pole PlContent musi być ciągiem o maksymalnej długości 35."
+                                   data-val-length-max="35" data-val-required="Pole nie może być puste." name="Fishes[@i].PlContent"
+                                   value="@Model.Fishes.ElementAt(@i).PlContent"
+                                   type="text">
+                        </td>
+
+                        <td style="position: relative;">
+                            <input autocomplete="off" class="prettyInput" data-val="true"
+                                   data-val-length="Pole EspContent musi być ciągiem o maksymalnej długości 35."
+                                   data-val-length-max="35" data-val-required="Pole nie może być puste." name="Fishes[@i].EspContent"
+                                   value="@Model.Fishes.ElementAt(@i).EspContent"
+                                   type="text">
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div style="text-align:center; margin-top: 20px">
+        <span style="margin-right: 15px">Zmień zdjęcie (maksymalna wielkość pliku: 400kB)</span>
+        <input class="inputFile" type="file" name="file" id="file">
+        <label for="file" class="custom-file-upload">
+            Wybierz plik
+        </label>
+    </div>
+    <input type="submit" value="Akceptuj" class="button guessButton" style="margin-top: 20px;">
+}
+

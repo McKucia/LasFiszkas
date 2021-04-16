@@ -68,3 +68,22 @@ function ProcessAndUpdate(result) {
         $('#update').html(html);
     }
 }
+
+var file = document.getElementById('file');
+
+file.addEventListener('change', function () {
+    var fileSize = this.files[0].size / 1024 / 1024;
+    var fileName = this.files[0].name;
+    var choose = document.querySelector("#choose");
+    var btnSubmit = document.querySelector('input[type="submit"]');
+
+    if (fileSize > 4) {
+        choose.style.color = 'var(--red)';
+        choose.textContent = "Plik przekracza dozwolony rozmiar";
+        file.value = '';
+    }
+    else {
+        choose.style.color = 'black';
+        choose.textContent = fileName;
+    }
+});

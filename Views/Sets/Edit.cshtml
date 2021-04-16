@@ -21,7 +21,7 @@
 @using (Html.BeginForm("Edit", "Sets", new { setId = Model.SetId }, FormMethod.Post, new { enctype = "multipart/form-data", autocomplete = "off" }))
 {
     <div style="margin-top: 10px;">
-        <h1 style="position: relative; width: fit-content; margin: auto; margin-bottom: 20px;">
+        <h1 style="position: relative; text-align: center; margin: auto; margin-bottom: 20px;">
             @Html.ValidationMessageFor(m => m.Name, "", new { @class = "validationField" })
             @Html.TextBoxFor(m => m.Name, new { @class = "setInput", placeholder = Model.Name != null ? Model.Name : "Nazwa zestawu" })
         </h1>
@@ -63,12 +63,16 @@
         </table>
     </div>
     <div style="text-align:center; margin-top: 20px">
-        <span style="margin-right: 15px">Zmień zdjęcie (maksymalna wielkość pliku: 400kB)</span>
+        <span style="margin-right: 15px">Zmień zdjęcie (maksymalna wielkość pliku: 4MB)</span>
         <input class="inputFile" type="file" name="file" id="file">
         <label for="file" class="custom-file-upload">
             Wybierz plik
         </label>
+        <div id="choose">Nie wybrano</div>
     </div>
-    <input type="submit" value="Akceptuj" class="button guessButton" style="margin-top: 20px;">
+    <input type="submit" value="Akceptuj" class="button guessButton" style="margin-top: 20px; margin-bottom: 100px">
 }
 
+@section ScriptsBottom{
+    <script type="text/javascript" src="@Url.Content("~/Content/Prototype/scripts/mainPage.js")"></script>
+}

@@ -7,7 +7,7 @@
 @using (Html.BeginForm("NewSet", "Sets", FormMethod.Post, new { enctype = "multipart/form-data", autocomplete = "off" }))
 {
     <div style="margin-top: 10px;">
-        <h1 style="position: relative; width: fit-content; margin: auto; margin-bottom: 20px;">
+        <h1 style="position: relative; text-align: center; margin: auto; margin-bottom: 20px;">
             @Html.ValidationMessageFor(f => f[0].Set.Name, "", new { @class = "validationField" })
             @Html.TextBoxFor(f => f[0].Set.Name, new { @class = "setInput", @placeholder = "Wpisz nazwę zestawu" })
         </h1>
@@ -43,13 +43,14 @@
     <span class="plus" onclick="addFishInput()">+</span>
 
     <div style="text-align:center; margin-top: 20px">
-        <span style="margin-right: 15px">Dodaj zdjęcie (maksymalna wielkość pliku: 400kB)</span>
-        <input class="inputFile" type="file" name="file" id="file">
+        <span style="margin-right: 15px">Dodaj zdjęcie (maksymalna wielkość pliku: 4MB)</span>
+        <input class="inputFile" type="file" name="file" id="file" accept="image/*">
         <label for="file" class="custom-file-upload">
             Wybierz plik
         </label>
+        <div id="choose">Nie wybrano</div>
     </div>
-    <input type="submit" value="Dodaj" class="button guessButton" style="margin-top: 20px;">
+    <input type="submit" value="Dodaj" class="button guessButton" style="margin-top: 20px; margin-bottom: 100px;">
 }
 
 <script id="trTmpl" type="text/template">
@@ -86,5 +87,6 @@
 </script>
 
 @section ScriptsBottom{
+    <script type="text/javascript" src="@Url.Content("~/Content/Prototype/scripts/mainPage.js")"></script>
     @System.Web.Optimization.Scripts.Render("~/bundles/mustache")
 }

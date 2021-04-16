@@ -9,13 +9,14 @@
 
     @Html.ValidationSummary(false, "", new { @style = "display: table; font-size: 18px; margin: auto;" })
 
-    <div style="text-align:center; margin-bottom: 15px">
-        <span style="margin-right: 15px">Dodaj zdjęcie (maksymalna wielkość pliku: 400kB)</span>
-        <input class="inputFile" type="file" name="file" id="file">
-        <label for="file" class="custom-file-upload">
-            Wybierz plik
-        </label>
-    </div>
+<div style="text-align:center; margin-bottom: 15px">
+    <span style="margin-right: 15px">Dodaj zdjęcie (maksymalna wielkość pliku: 4MB)</span>
+    <input class="inputFile" type="file" name="file" id="file">
+    <label for="file" class="custom-file-upload">
+        Wybierz plik
+    </label>
+    <div id="choose">Nie wybrano</div>
+</div>
     <table style="margin: auto;">
         <tr>
             <td>@Html.LabelFor(l => l.Email, "E-mail:", new { @style = "font-size: 22px; margin-right: 10px; padding: 5px;" })</td>
@@ -56,4 +57,5 @@
 @section ScriptsBottom{
     @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
     @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="@Url.Content("~/Content/Prototype/scripts/mainPage.js")"></script>
 }

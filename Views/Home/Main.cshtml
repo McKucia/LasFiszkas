@@ -1,7 +1,19 @@
-﻿
+﻿@using Microsoft.AspNet.Identity.Owin;
+@using Microsoft.AspNet.Identity;
+@using LasFiszkas.App_Start;
+
 @{
     ViewBag.Title = "Main";
 }
 
-<h1 style="text-align: center">Witaj &hearts;</h1>
-
+@if (Request.IsAuthenticated)
+{
+    @Html.AntiForgeryToken()
+    var user = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
+    <h1 class="text-center mt-3">Witaj @user.UserName!</h1>
+}
+else
+{
+    <h1 class="text-center mb-5 mt-3">Zacznij zarejestrowania się!</h1>
+    <a class="button guessButton" href='@Url.Action("Register", "Account")'>Zarejestruj</a>
+}
